@@ -1,0 +1,76 @@
+<!--  app/views/movies/show.html.erb -->
+
+<div class="modal-dialog modal-xl">
+  <div class="modal-content">
+    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+    <div class="modal-body text-center pb-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+          <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Details about <em><%= @student.user.first_name%> <%= @student.user.last_name %></em></h2>
+          <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+          </div>
+            <ul class="list-group" id="details">
+              <li class="list-group-item">Name: <%= @student.user.first_name %> <%= @student.user.last_name %></li>
+              <li class="list-group-item">School: <%= @student.school.name %></li>
+              <li class="list-group-item">Email: <%= @student.user.email %></li>
+              <li class="list-group-item">Birthdate: <%= @student.birthdate %></li>
+              <li class="list-group">
+                Guardian Information:
+                <% @student.guardians.each do |guardian| %>
+                  <ul class="list-group" name="guardian_details">
+                    <li class="list-group-item">Name: <%= guardian.user.first_name%> <%= guardian.user.last_name %><br/>
+                      Email: <%= guardian.user.email%></li>
+                  </ul>
+                <% end %>
+              </li>
+            </ul>
+            <h3>Meetings List</h3>
+            <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>Meeting Day</th>
+              <th>Nurse</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @student.meetings.each do |meeting| %>
+              <tr>
+                <td>
+                  <%= meeting.start %>
+                </td>
+                <td>
+                  <%= meeting.nurse.user.first_name %> <%= meeting.nurse.user.last_name %>
+                </td>
+              </tr>
+            <% end %>
+            </tbody>
+
+            </table>
+      <!-- More items should be added
+           such as Student email, Guardian Info (email), Medication list, Visit History
+           (update migrate should be done first)
+      -->
+
+      <div class="row">
+        <%= link_to 'Student Medications', student_medication_assignments_path(@student), :class => 'btn btn-primary ' %>
+        <% if not (@current_user.student or @current_user.guardian)%>
+          <%= link_to 'Edit', edit_student_path(@student), :class => 'btn btn-primary ' %>
+          <%= link_to 'Back to student list', students_path, :class => 'btn btn-primary ' %>
+          <% if @current_user.administrator%>
+            <%= link_to 'Transfer', transfer_student_path(@student), :class => 'btn btn-primary ' %>
+          <% end %>
+        <% end %>
+      </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

@@ -1,0 +1,32 @@
+
+<section class="page-section portfolio" id="portfolio">
+  <div class="container">
+    <!-- Portfolio Section Heading-->
+
+    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Edit Nurse</h2>
+    <div class="divider-custom">
+      <div class="divider-custom-line"></div>
+      <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+      <div class="divider-custom-line"></div>
+    </div>
+
+        <%= form_tag @nurse, :method => :put do %>
+          <%= label :user, :first_name, 'First Name', :class => 'col-form-label' %>
+          <%= text_field :user, :first_name, :class => 'form-control' %>
+
+          <%= label :user, :last_name, 'Last Name', :class => 'col-form-label' %>
+          <%= text_field :user, :last_name, :class => 'form-control' %>
+
+          <%= label :user, :email, 'Email', :class => 'col-form-label'  %>
+          <%= text_field :user, :email, :class => 'form-control' %>
+
+          <%= label :nurse, :school, 'School List', :class => 'col-form-label'  %>
+          <%= collection_select(:nurse, :school_id, School.all, :id, :name, :class => "form-select form-select-lg mb-3")  %>
+
+          <br/>
+          <%= submit_tag 'Save Changes', :class => 'btn btn-primary' %>
+          <%= link_to 'Cancel', nurses_path, :class => 'btn btn-secondary' %>
+        <% end %>
+
+  </div>
+</section>

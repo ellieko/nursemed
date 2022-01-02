@@ -1,0 +1,68 @@
+<div class="modal-dialog modal-xl">
+  <div class="modal-content">
+    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+    <div class="modal-body text-center pb-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Details about medication assignment</h2>
+            <div class="divider-custom">
+              <div class="divider-custom-line"></div>
+              <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+              <div class="divider-custom-line"></div>
+            </div>
+
+
+              <ul class="list-group" id="details">
+                <li class="list-group-item">
+                  Medication Name:
+                  <%= @medication.name %>
+                </li>
+                <li class="list-group-item">
+                  True Name:
+                  <%= @medication.true_name %>
+                </li>
+                <li class="list-group-item">
+                  Dosage:
+                  <%= @medication.dosage %>
+                </li>
+                <li class="list-group-item">
+                  Amount:
+                  <%= @medication_assignment.amount %>
+                </li>
+                <li class="list-group-item">
+                  Frequency:
+                  <%= @medication_assignment.frequency %>
+                </li>
+                <li class="list-group-item">
+                  Additional Details:
+                  <%= @medication_assignment.description %>
+                </li>
+                <li class="list-group-item">
+                  Start Date:
+                  <%= @medication_assignment.start_date %>
+                </li>
+                <li class="list-group-item">
+                  End Date:
+                  <%= @medication_assignment.end_date %>
+                </li>
+              </ul>
+
+<!-- More details should be added
+-->
+
+            <% if  @current_user.nurse%>
+              <%= link_to 'Edit', edit_student_medication_assignment_path(@student, @medication_assignment), :class => 'btn btn-primary col-2' %>
+              <%= link_to 'Stop Medication', destroy_assignment_path(@student, @medication_assignment), 'data-method' => 'delete', 'data-confirm' => 'Are you sure?', :class => 'btn btn-danger col-2' %>
+            <% end %>
+  <%= link_to 'Back to Medication List', student_medication_assignments_path(@student), :class => 'btn btn-primary col-2' %>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

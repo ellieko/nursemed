@@ -1,0 +1,25 @@
+
+<section class="page-section portfolio" id="portfolio">
+  <div class="container">
+    <!-- Portfolio Section Heading-->
+
+    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Edit Medications</h2>
+    <div class="divider-custom">
+      <div class="divider-custom-line"></div>
+      <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+      <div class="divider-custom-line"></div>
+    </div>
+
+        <%= form_tag medication_path(@medication), :method => :put do %>
+          <%= label :medication, :name, 'Name', :class => 'col-form-label' %>
+          <%= text_field :medication, :name, :class => 'form-control' %>
+          <%= label :medication, :dosage, 'Dosage', :class => 'col-form-label' %>
+          <%= text_field :medication, :dosage, :class => 'form-control' %>
+          <%= label :medication, :true_name, 'True Name', :class => 'col-form-label' %>
+          <%= text_field :medication, :true_name, :class => 'form-control' %>
+          <br/>
+          <%= submit_tag 'Update Medication', :class => 'btn btn-primary' %>
+          <%= link_to 'Cancel', medications_path, :class => 'btn btn-secondary' %>
+        <% end %>
+  </div>
+</section>

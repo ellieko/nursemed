@@ -1,0 +1,45 @@
+
+<section class="page-section portfolio" id="portfolio">
+  <div class="container">
+    <!-- Portfolio Section Heading-->
+
+    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Add New Student</h2>
+    <div class="divider-custom">
+      <div class="divider-custom-line"></div>
+      <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+      <div class="divider-custom-line"></div>
+    </div>
+
+
+          <%= form_tag students_path :class => 'form' do %>
+            <%= label :user, :first_name, 'First Name', :class => 'col-form-label' %>
+            <%= text_field :user, :first_name, :class => 'form-control' %>
+
+            <%= label :user, :last_name, 'Last Name', :class => 'col-form-label' %>
+            <%= text_field :user, :last_name, :class => 'form-control' %>
+
+            <%= label :user, :email, 'Email', :class => 'col-form-label'  %>
+            <%= text_field :user, :email, :class => 'form-control' %>
+
+            <%= label :student, :birthdate, 'Birthdate', :class => 'col-form-label'  %>
+            <%= date_select :student, :birthdate, {}, :class => "form-select form-select-lg mb-3" %>
+            <%= label :student, :birthdate, 'Guardian', :class => 'col-form-label'  %>
+            <ul>
+              <%= label :guardians, :first_name, 'First Name', :class => 'col-form-label' %>
+              <%= text_field :guardians, :first_name, :class => 'form-control' %>
+
+              <%= label :guardians, :last_name, 'Last Name', :class => 'col-form-label'%>
+              <%= text_field :guardians, :last_name, :class => 'form-control' %>
+
+              <%= label :guardians, :email, 'Email', :class => 'col-form-label'%>
+              <%= text_field :guardians, :email, :class => 'form-control' %>
+            </ul>
+
+            <br/>
+            <%= submit_tag 'Save Changes', :class => 'btn btn-primary' %>
+            <%= link_to 'Cancel', students_path, :class => 'btn btn-secondary' %>
+          <% end %>
+
+       </div>
+   </div>
+  </section>

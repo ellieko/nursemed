@@ -1,0 +1,28 @@
+<!--  This file is app/views/students/index.html.erb -->
+<h2>All Meetings</h2>
+  <table class="table table-striped col-md-12" id="movies">
+  <thead>
+  <tr>
+    <th>Nurse</th>
+    <th>Student</th>
+    <th>Date</th>
+    <th> Select </th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @meeting.each do |meeting| %>
+    <tr>
+      <td>
+        <%= meeting.student.user.last_name %>
+      </td>
+      <td>
+        <%= meeting.nurse.user.last_name %>
+      </td>
+      <td>
+        <%= meeting.date %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+  </table>
+

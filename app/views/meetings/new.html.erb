@@ -1,0 +1,67 @@
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<section class="page-section portfolio" id="portfolio">
+  <div class="container">
+    <!-- Portfolio Section Heading-->
+
+    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Add New Meeting Schedule</h2>
+    <div class="divider-custom">
+      <div class="divider-custom-line"></div>
+      <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+      <div class="divider-custom-line"></div>
+    </div>
+
+    <table class="table table-striped col-md-12" id="movies">
+    <thead class="table-dark">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Birthdate</th>
+      <th scope="col">Email</th>
+      <th scope="col">Check</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% if @current_user.nurse %>
+      <% @students.each do |student| %>
+        <tr>
+          <td><%= student.id %></td>
+          <td><%= student.user.first_name %></td>
+          <td><%= student.user.last_name %></td>
+          <td><%= student.birthdate %></td>
+          <td><%= student.user.email %></td>
+          <td><%= check_box_tag "cb_#{student.id}", "cb_#{student.id}"%></td>
+        </tr>
+      <% end %>
+    <% end %>
+    </tbody>
+  </table>
+  <%= form_tag nurse_meetings_path, :id => 'new-meething-id' do %>
+    <div class="mb-3">
+      <%= hidden_field  :meeting, :student_id, :class => 'form-control' %>
+    </div>
+    <div id="new-meeting-form" class="mb-3">
+      <%= label :meeting, :start, 'Appointment', :class => 'form-label'%>
+      <%= datetime_select :meeting, :start, :class => 'form-control', :start_hour=> 8, :end_hour => 18, :minute_step => 30,
+                          :default => {:start_year => Date.current.year, :start_day => Date.current.next_day, :hour => '10', :minute => '30'} %>
+    </div>
+    <div id="new-meeting-form" class="mb-3">
+      <%= label :meeting, :info, 'Meeting Information', :class => 'form-label' %>
+      <%= text_area :meeting, :info, :class => "form-control", :rows => "3" %>
+    </div>
+    <br/>
+    <%= submit_tag 'Add Schedule', :class => 'btn btn-dark btn' %>
+    <%= link_to 'Cancel', nurse_path(@current_user.nurse), :class => 'btn btn-dark btn' %>
+  <% end %>
+  <script>
+  $(document).ready(function(){
+      $('input:checkbox').click(function() {
+          $('input:checkbox').not(this).prop('checked', false)
+          document.getElementById("meeting_student_id").value = $(this)[0].value.split('_').pop();
+      })
+  });
+  </script>
+
+  </div>
+  </div>
+</section>

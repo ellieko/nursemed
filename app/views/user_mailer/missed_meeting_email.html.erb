@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+<section class="page-section portfolio" id="portfolio">
+  <div class="container">
+<h1>Dear Ms./Mr. <%= @user.last_name %></h1>
+<p>
+  Your child <%= @meeting.student.user.first_name %> has missed their meeting with nurse <%= @meeting.nurse.user.last_name %> at <%= @meeting.date %>.
+</p>
+  </div>
+</section>
+</body>
+</html>

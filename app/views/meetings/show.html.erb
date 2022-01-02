@@ -1,0 +1,60 @@
+<div class="modal-dialog modal-xl">
+  <div class="modal-content">
+    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+    <div class="modal-body text-center pb-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Meeting Details</h2>
+            <div class="divider-custom">
+              <div class="divider-custom-line"></div>
+              <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+              <div class="divider-custom-line"></div>
+            </div>
+                <ul class="list-group" id="details">
+                  <li class="list-group-item">Meeting Date: <%=@meeting.start %></li>
+                  <li class="list-group-item">Meeting Info: <%=@meeting.info %></li>
+                </ul>
+              <h3>Student Information</h3>
+              <ul class="list-group">
+                <li class="list-group-item"> First Name: <%= @meeting.student.user.first_name %> </li>
+                <li class="list-group-item"> Last Name: <%= @meeting.student.user.last_name %></li>
+                <li class="list-group-item"> Birthdate: <%=@meeting.student.birthdate %> </li>
+                <li class="list-group-item"> Email: <%= @meeting.student.user.email %></li>
+                <li class="list-group-item"> Guardian Information:
+                  <% @meeting.student.guardians.each do |guardian| %>
+                    <ul class="list-group" name="guardian_details">
+                      <li class="list-group-item">Name: <%= guardian.first_name%> <%= guardian.last_name %><br/>
+                        Email: <%= guardian.email%></li>
+                    </ul>
+                  <% end %>
+              </ul>
+
+              <h3>Medication Assignment</h3>
+              <ul class="list-group">
+                <% @meeting.student.medication_assignments.each do |med_assignment| %>
+                  <ul>
+                    <li class="list-group-item"> Medication Info:
+                      <%= Medication.find(med_assignment.medication_id).name %>
+                      (<%= Medication.find(med_assignment.medication_id).true_name %>), dosage:
+                      <%= Medication.find(med_assignment.medication_id).dosage %>
+                    </li>
+                    <li class="list-group-item"> Medication Start Date: <%= med_assignment.start_date %></li>
+                    <li class="list-group-item"> Medication End Date: <%= med_assignment.end_date %></li>
+                  </ul>
+                  <% end %>
+              </ul>
+
+              <%= link_to 'Log Meeting', log_path(@meeting.nurse, @meeting), method: 'post'  %>
+              <%= link_to 'Cancel Meeting', nurse_meeting_path(@meeting.nurse, @meeting), 'data-method' => 'delete', 'data-confirm' => 'Are you sure?', :class => 'btn btn-danger col-2' %>
+              <%= link_to 'Edit Meeting Details', edit_nurse_meeting_path(@meeting.nurse, @meeting), method: 'get'  %>
+              <%= link_to 'Back to Schedule', nurse_path(@meeting.nurse), method: 'get'  %>
+              <%= link_to 'Report Med Error', error_path(@meeting.nurse, @meeting), method: 'get'  %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

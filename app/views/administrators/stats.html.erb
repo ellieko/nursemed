@@ -1,0 +1,11 @@
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+<section class="page-section portfolio" id="portfolio">
+  <div class="container">
+    <div class="row justify-content-center">
+      <%= high_chart_globals(@chart_globals) %>
+      <%= high_chart("some_id", @chart) %>
+    </div>
+  </div>
+</section>

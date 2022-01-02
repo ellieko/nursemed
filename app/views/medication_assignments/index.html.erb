@@ -1,0 +1,65 @@
+
+<section class="page-section portfolio" id="portfolio">
+  <div class="container">
+    <!-- Portfolio Section Heading-->
+
+    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">All Medications</h2>
+    <div class="divider-custom">
+      <div class="divider-custom-line"></div>
+      <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+      <div class="divider-custom-line"></div>
+    </div>
+
+      <div class="row justify-content-center">
+        <table class="table table-striped col-md-12" id="medication_assignments">
+          <thead>
+          <tr>
+            <th>Medication Name</th>
+            <th>True Name</th>
+            <th>Dosage</th>
+            <th>Amount</th>
+            <th>Frequency</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>More Info</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @medication_assignments.each do |med_assignment| %>
+            <tr>
+              <td>
+                <%= Medication.find(med_assignment.medication_id).name %>
+              </td>
+              <td>
+                <%= Medication.find(med_assignment.medication_id).true_name %>
+              </td>
+              <td>
+                <%= Medication.find(med_assignment.medication_id).dosage  %>
+              </td>
+              <td>
+                <%= med_assignment.amount  %>
+              </td>
+              <td>
+                <%= med_assignment.frequency  %>
+              </td>
+              <td>
+                <%= med_assignment.start_date  %>
+              </td>
+              <td>
+                <%= med_assignment.end_date  %>
+              </td>
+              <td>
+                <%= link_to "More about #{Medication.find(med_assignment.medication_id).name} ", student_medication_assignment_path(@student, med_assignment) %>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+        <% if  @current_user.nurse %>
+          <%= link_to 'Assign Medication', new_student_medication_assignment_path(@student), :class => 'btn btn-primary' %>
+
+        <% end %>
+    </div>
+
+   </div>
+    </section>

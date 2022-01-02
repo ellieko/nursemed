@@ -1,0 +1,21 @@
+
+<section class="page-section portfolio" id="portfolio">
+  <div class="container">
+    <!-- Portfolio Section Heading-->
+
+    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Transfer <em><%= @student.user.first_name%> <%= @student.user.last_name %></em></h2>
+    <div class="divider-custom">
+      <div class="divider-custom-line"></div>
+      <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+      <div class="divider-custom-line"></div>
+    </div>
+
+
+<%= form_tag transfer_student_path(@student), :class => 'form' do %>
+  <%= select_tag "school", options_from_collection_for_select(@schools, "id", "name", @student.school.id)%>
+  <%= submit_tag 'Save Changes', :class => 'btn btn-primary' %>
+  <%= link_to 'Cancel', student_path(@student), :class => 'btn btn-secondary' %>
+<% end %>
+
+  </div>
+</section>

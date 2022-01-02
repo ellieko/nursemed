@@ -1,0 +1,36 @@
+
+<section class="page-section portfolio" id="portfolio">
+  <div class="container">
+    <!-- Portfolio Section Heading-->
+
+    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Assign Medication for Student</h2>
+    <div class="divider-custom">
+      <div class="divider-custom-line"></div>
+      <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+      <div class="divider-custom-line"></div>
+    </div>
+
+
+        <%= form_tag student_medication_assignments_path, :class => 'form' do %>
+          <%= label :medication_assignment, :medication, 'Medication List', :class => 'col-form-label'  %>
+          <%= collection_select(:medication_assignment, :medication_id, Medication.all, :id, :display_name) %>
+          <br/>
+          <%= label :medication_assignment, :start_date, 'Start Date', :class => 'col-form-label'  %>
+          <%= date_select :medication_assignment, :start_date, {}, :class => 'form-control col-2 d-inline' %>
+          <%= label :medication_assignment, :end_date, 'End Date', :class => 'col-form-label'  %>
+          <%= date_select :medication_assignment, :end_date, {}, :class => 'form-control col-2 d-inline' %>
+          <%= label :medication_assignment, :amount, 'Amount', :class => 'col-form-label' %>
+          <%= text_field :medication_assignment, :amount, :class => 'form-control' %>
+          <%= label :medication_assignment, :frequency, 'Frequency', :class => 'col-form-label' %>
+          <%= text_field :medication_assignment, :frequency, :class => 'form-control' %>
+          <%= label :medication_assignment, :description, 'Additional Details', :class => 'col-form-label' %>
+          <%= text_field :medication_assignment, :description, :class => 'form-control' %>
+          <%= hidden_field :medication_assignment, :student_id, :value => @student.id %>
+          <%= hidden_field :medication_assignment, :nurse_id, :value => @current_user.id %>
+          <br/>
+          <%= submit_tag 'Assign Medication', :class => 'btn btn-primary' %>
+          <%= link_to 'Cancel', student_medication_assignments_path, :class => 'btn btn-secondary' %>
+        <% end %>
+
+</div>
+</section>

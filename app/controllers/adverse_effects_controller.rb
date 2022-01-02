@@ -1,0 +1,2 @@
+class AdverseEffectsController < ApplicationController
+end
