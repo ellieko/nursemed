@@ -10,13 +10,8 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user_info = request.env['omniauth.auth']
-    if user_info
-      user = User.find_by_email(user_info['info']['email'])
-    else
-      user = User.find_by_email(params["session"]["email"])
-    end
-    if user && (user_info || user.authenticate(params["session"]["password"]))
+    user = User.find_by_email(params["session"]["email"])
+    if user && user.authenticate(params["session"]["password"])
       session[:session_token] = user.session_token
     end
     if not determine_redirect(user)

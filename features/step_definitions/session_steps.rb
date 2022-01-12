@@ -86,20 +86,3 @@ end
 Then /^an user should be redirected to the login page$/ do
   expect(page).to have_content("Login")
 end
-
-Given /^Github has been set up$/ do
-  OmniAuth.config.mock_auth[:github] = nil
-  OmniAuth.config.test_mode = true
-  OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(
-    {"provider" => "github",
-     "info" => {"email" => "inco@gnito.com"},
-     "credentials" => {"token" => ENV["TEST_KEY"],
-                       "expires" => false},
-     "extra" => {"raw_info" => {"email" => "inco@gnito.com"}}})
-end
-
-Given /^Github has not been set up$/ do
-  OmniAuth.config.mock_auth[:github] = nil
-  OmniAuth.config.test_mode = true
-  OmniAuth.config.mock_auth[:github] = :invalid_credentials
-end

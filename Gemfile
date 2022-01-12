@@ -2,9 +2,6 @@ source 'https://rubygems.org'
 
 ruby '2.6.6'
 
-gem 'omniauth'
-gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
-gem "omniauth-rails_csrf_protection"
 gem 'dotenv-rails', groups: [:development, :test]
 
 gem 'lazy_high_charts'
