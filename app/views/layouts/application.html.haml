@@ -49,11 +49,11 @@
                 %li.nav-item.mx-0.mx-lg-1
                   %a.nav-link.py-3.px-0.px-lg-3.rounded{:href => students_path } Students
                 %li.nav-item.mx-0.mx-lg-1
-                  %a.nav-link.py-3.px-0.px-lg-3.rounded{:href => nurse_meetings_path(@current_user.nurse) } Meetings
+                  %a.nav-link.py-3.px-0.px-lg-3.rounded{:href => nurse_meetings_path(@current_user.nurse) } Meeting History
                 %li.nav-item.mx-0.mx-lg-1
                   %a.nav-link.py-3.px-0.px-lg-3.rounded{:href => medications_path } Medications
                 %li.nav-item.mx-0.mx-lg-1
-                  %a.nav-link.py-3.px-0.px-lg-3.rounded{:href => nurse_path(@current_user.nurse) } My Schedule
+                  %a.nav-link.py-3.px-0.px-lg-3.rounded{:href => nurse_path(@current_user.nurse) } Schedule
 
             - if @current_user.student
               %ul.navbar-nav.ms-auto
