@@ -1,6 +1,7 @@
 class MedicationsController < ApplicationController
 
   before_action :is_admin, :except => [:index, :show]
+  after_action :access_denied, :only => [:edit, :update, :show, :destory]
 
   def index
     @medications = Medication.all

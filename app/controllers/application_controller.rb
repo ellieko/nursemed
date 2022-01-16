@@ -27,4 +27,9 @@ class ApplicationController < ActionController::Base
       redirect_to login_path
     end
   end
+
+  def access_denied
+    flash[:warning] = "[Unauthorized action] Redirected to the main page."
+  end
+
 end

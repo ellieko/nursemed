@@ -76,6 +76,15 @@ describe MedicationsController do
       expect(response).to redirect_to(medications_path)
     end
 
+    it 'should show correct flash message' do
+      medication = double('Medication', :id => 1, :name => 'Tylenol', :dosage => '80 mg', :true_name => 'Acetaminophen')
+      expect(Medication).to receive(:find).with('1').and_return(medication)
+      expect(medication).to receive(:destroy)
+      expect(medication).to receive(:medication_assignments).and_return([])
+      delete :destroy, :id => '1'
+      expect(flash[:notice]).to eq("Removed medication.")
+    end
+
     it 'should not delete medication with med assignments' do
       medication = double('Medication', :id => 1, :name => 'Tylenol', :dosage => '80 mg', :true_name => 'Acetaminophen')
       med_assignment = [double('MedicationAssignment', :medication => medication)]
