@@ -43,6 +43,15 @@ describe MeetingsController do
       post :create, :nurse_id => 2, :meeting => fake_params
       expect(response).to redirect_to(new_nurse_meeting_path)
     end
+    it 'should prevent duplicated booking' do
+      fake_params_1 = {:nurse_id => 2, :student_id => 2, :start => Time.parse('2023-01-31 10:00:00 UTC'), :info => 'Regular Medication',
+      'start(1i)' => '2023', 'start(2i)' => '01', 'start(3i)' => '31', 'start(4i)' => '10', 'start(5i)' => '00'}
+      post :create, :nurse_id => 2, :meeting => fake_params_1
+      fake_params_2 = {:nurse_id => 2, :student_id => 2, :start => Time.parse('2023-01-31 10:00:00 UTC'), :info => 'Regular Medication',
+      'start(1i)' => '2023', 'start(2i)' => '01', 'start(3i)' => '31', 'start(4i)' => '10', 'start(5i)' => '00'}
+      post :create, :nurse_id => 2, :meeting => fake_params_2
+      expect(flash[:notice]).to eq("The seleced time slot is not available. Please choose another time.")
+    end
   end
 
   describe 'logs a visit' do

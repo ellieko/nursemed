@@ -13,7 +13,7 @@ class MeetingsController < ApplicationController
     @nurse = @current_user.nurse
     d = DateTime.civil(meeting_params["start(1i)"].to_i,meeting_params["start(2i)"].to_i,meeting_params["start(3i)"].to_i,
                        meeting_params["start(4i)"].to_i,meeting_params["start(5i)"].to_i)
-    if @nurse.meetings.where(start: meeting_params[:start]).empty? && Date.today < d
+    if @nurse.meetings.where(start: d).empty? && Date.today < d
       begin
         @student = Student.find(meeting_params[:student_id])
         @meeting = Meeting.new(meeting_params)
