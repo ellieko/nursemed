@@ -11,7 +11,7 @@
     </div>
 
     <table class="table table-striped col-md-12" id="movies">
-    <thead class="table-dark">
+    <thead>
     <tr>
       <th scope="col">ID</th>
       <th scope="col">First Name</th>
@@ -50,8 +50,8 @@
       <%= text_area :meeting, :info, :class => "form-control", :rows => "3" %>
     </div>
     <br/>
-    <%= submit_tag 'Add Schedule', :class => 'btn btn-dark btn' %>
-    <%= link_to 'Cancel', nurse_path(@current_user.nurse), :class => 'btn btn-dark btn' %>
+    <%= submit_tag 'Add Schedule', :class => 'btn btn-primary btn' %>
+    <%= link_to 'Cancel', nurse_path(@current_user.nurse), :class => 'btn btn-danger' %>
   <% end %>
   <script>
   $(document).ready(function(){

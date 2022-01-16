@@ -11,10 +11,10 @@
               <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
               <div class="divider-custom-line"></div>
             </div>
-              <ul class="list-group text-start" id="details">
-                <li class="list-group-item">Meeting Date: <%=@meeting.start %></li>
-                <li class="list-group-item">Meeting Info: <%=@meeting.info %></li>
-              </ul>
+            <ul class="list-group text-start" id="details">
+              <li class="list-group-item">Meeting Date: <%=@meeting.start %></li>
+              <li class="list-group-item">Meeting Info: <%=@meeting.info %></li>
+            </ul>
             <br>
             <h3 class="page-section-heading text-center text-uppercase text-secondary mb-0" >Student Information</h3>
             <ul class="list-group text-start">
@@ -50,10 +50,11 @@
         <div class="row justify-content-center">
           <div style="float: left; width: auto;"><%= button_to 'Log Meeting', log_path(@meeting.nurse, @meeting), method: 'post', form_class: "myButton", class: 'btn btn-primary' %></div>
           <div style="float: left; width: auto;"><%= button_to 'Edit Meeting Details', edit_nurse_meeting_path(@meeting.nurse, @meeting), method: 'get', form_class: "myButton", class: 'btn btn-primary' %></div>
+          <div style="float: right; width: auto;"><%= button_to 'Cancel Meeting', { action: "destroy", nurse_id: @meeting.nurse, id: @meeting }, method: 'delete', data: { confirm: "Are you sure?" }, class: 'btn btn-secondary' %></div>
           <div style="float: left; width: auto;"><%= button_to 'Back to Schedule', nurse_path(@meeting.nurse), method: 'get',form_class: "myButton", class: 'btn btn-primary'  %></div>
-          <div style="float: right; width: auto;"><%= button_to 'Cancel Meeting', { action: "destroy", nurse_id: @meeting.nurse, id: @meeting }, method: 'delete', data: { confirm: "Are you sure?" }, class: 'btn btn-danger' %></div>
-          <div style="float: right; width: auto;"><%= button_to 'Report Med Error', error_path(@meeting.nurse, @meeting), method: 'get', class: 'btn btn-danger'  %> </div>
+          <div style="float: right; width: auto;"><%= button_to 'Report Med Error', error_path(@meeting.nurse, @meeting), method: 'get', class: 'btn btn-secondary'  %> </div>
         </div>
+      </div>
     </div>
   </div>
 </div>

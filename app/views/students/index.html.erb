@@ -1,55 +1,46 @@
 <!--  This file is app/views/students/index.html.erb -->
 
-
-
-       <section class="page-section portfolio" id="portfolio">
-            <div class="container">
-                <!-- Portfolio Section Heading-->
-
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">All Students</h2>
-                          <div class="divider-custom">
-                                    <div class="divider-custom-line"></div>
-                                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                    <div class="divider-custom-line"></div>
-                                </div>
-                                  <div class="row justify-content-center">
-                                     <table class="table table-striped col-md-18" id="movies">
-                                                                        <thead>
-                                                                        
-                                                                        <tr>
-                                                                          <th>First Name</th>
-                                                                          <th>Last Name</th>
-                                                                          <th>Birthdate</th>
-                                                                          <th>Email</th>
-                                                                          <th>Guardians</th>
-                                                                          <th>More Info</th>
-                                                                        </tr>
-                                                                        </thead>
-
-                                                                       <tbody>
-                                                                        <% @students.each do |student| %>
-                                                                          <tr>
-                                                                            <td><%= student.user.first_name %></td>
-                                                                            <td><%= student.user.last_name %></td>
-                                                                            <td><%= student.birthdate %></td>
-                                                                            <td><%= student.user.email %></td>
-                                                                            <td>
-                                                                            <% student.guardians.each do |guardian| %>
-                                                                              <%= guardian.user.first_name + " " + guardian.user.last_name%><br/>
-                                                                            <% end %>
-                                                                            </td>
-                                                                            <td>
-                                                                              <%= link_to "More about #{student.user.first_name} #{student.user.last_name}", student_path(student) %>
-                                                                            </td>
-                                                                          </tr>
-                                                                        <% end %>
-                                                                        </tbody>
-                                                                      </table>
-                                    <% if @current_user.nurse%>
-                                      <%= link_to 'Add new student', new_student_path, :class => 'btn btn-primary' %>
-                                    <% end %>
-
-                                  </div>
-
-               </div>
-       </section>
+<section class="page-section portfolio" id="portfolio">
+  <div class="container">
+    <!-- Portfolio Section Heading-->
+    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">All Students</h2>
+      <div class="divider-custom">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+        <div class="divider-custom-line"></div>
+      </div>
+      <table class="table table-striped col-md-12" id="movies">
+        <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Birthdate</th>
+          <th>Email</th>
+          <th>Guardians</th>
+          <th>More Info</th>
+        </tr>
+        </thead>
+        <tbody>
+          <% @students.each do |student| %>
+            <tr>
+              <td><%= student.user.first_name %></td>
+              <td><%= student.user.last_name %></td>
+              <td><%= student.birthdate %></td>
+              <td><%= student.user.email %></td>
+              <td>
+              <% student.guardians.each do |guardian| %>
+                <%= guardian.user.first_name + " " + guardian.user.last_name%><br/>
+              <% end %>
+              </td>
+              <td>
+                <%= link_to "More about #{student.user.first_name} #{student.user.last_name}", student_path(student) %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <% if @current_user.nurse%>
+        <%= link_to 'Add new student', new_student_path, :class => 'btn btn-primary' %>
+      <% end %>
+  </div>
+</section>
