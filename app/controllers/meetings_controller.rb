@@ -54,7 +54,7 @@ class MeetingsController < ApplicationController
     @nurse = @current_user.nurse
     @meeting = Meeting.find params[:id]
     @meeting.update_attributes!(meeting_params)
-    flash[:notice] = "Meeting Details was successfully updated."
+    flash[:notice] = "Meeting details were successfully updated."
     redirect_to nurse_meeting_path(@nurse, @meeting)
   end
 

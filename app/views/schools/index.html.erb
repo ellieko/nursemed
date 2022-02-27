@@ -1,41 +1,34 @@
-
-
-
-       <section class="page-section portfolio" id="portfolio">
-            <div class="container">
-                <!-- Portfolio Section Heading-->
-
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">All Schools</h2>
-                          <div class="divider-custom">
-                                    <div class="divider-custom-line"></div>
-                                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                    <div class="divider-custom-line"></div>
-                                </div>
-                                  <div class="row justify-content-center">
-
-
-              <table class="table table-striped col-md-12" id="school_assignments">
-                <thead>
-                <tr>
-                  <th>Name</th>
-                </tr>
-                </thead>
-                <tbody>
-                <% @schools.each do |school| %>
-                  <tr>
-                    <td>
-                      <%= school.name %>
-                    </td>
-                    <td>
-                      <%= link_to "More about #{school.name} ", school_path(school) %>
-                    </td>
-                  </tr>
-                <% end %>
-                </tbody>
-              </table>
-              <%= link_to 'Add school', new_school_path, :class => 'btn btn-primary' %>
-
-    </div>
-
-               </div>
-       </section>
+<section class="page-section portfolio" id="portfolio">
+  <div class="container">
+    <!-- Portfolio Section Heading-->
+    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">All Schools</h2>
+      <div class="divider-custom">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+        <div class="divider-custom-line"></div>
+      </div>
+      <div class="row justify-content-center">
+        <table class="table table-striped col-md-12" id="school_assignments">
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>More Info</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @schools.each do |school| %>
+            <tr>
+              <td>
+                <%= school.name %>
+              </td>
+              <td>
+                <%= link_to "More about #{school.name} ", school_path(school) %>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      <%= link_to 'Add school', new_school_path, :class => 'btn btn-primary' %>
+      </div>
+  </div>
+</section>

@@ -1,21 +1,43 @@
-<h2>Edit Meeting Information</h2>
-<%= form_tag nurse_meeting_path(@nurse, @meeting), :method => :put do %>
-  <div class="mb-3">
-    <%= hidden_field  :meeting, :student_id, :class => 'form-control' %>
+<div class="modal-dialog modal-xl">
+  <div class="modal-content">
+    <div class="modal-header border-0"></div>
+    <div class="modal-body text-center pb-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Edit Meeting Information</h2>
+            <div class="divider-custom">
+              <div class="divider-custom-line"></div>
+              <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+              <div class="divider-custom-line"></div>
+            </div>
+            <ul class="list-group text-start" id="details">
+
+              <%= form_tag nurse_meeting_path(@nurse, @meeting), :method => :put do %>
+                <div class="mb-3">
+                  <%= hidden_field  :meeting, :student_id, :class => 'form-control' %>
+                </div>
+                <div id="new-meeting-form" class="mb-3">
+                  <%= label :meeting, :start, 'Appointment', :class => 'form-label'%>
+                  <%= datetime_select :meeting, :start, :class => 'form-control', :start_hour=> 8, :end_hour => 18, :minute_step => 30,
+                                      :default => {:start_year => Date.current.year, :start_day => Date.current.next_day, :hour => '10', :minute => '30'} %>
+                </div>
+                <div id="new-meeting-form" class="mb-3">
+                  <%= label :meeting, :info, 'Meeting Information', :class => 'form-label' %>
+                  <%= text_area :meeting, :info, :class => "form-control", :rows => "3" %>
+                </div>
+                <%= submit_tag 'Save', :class => 'btn btn-primary' %>
+                <%= link_to 'Cancel', nurse_meeting_path(@nurse, @meeting), :class => 'btn btn-secondary' %>
+              <% end %>
+
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div id="new-meeting-form" class="mb-3">
-    <%= label :meeting, :start, 'Appointment', :class => 'form-label'%>
-    <%= datetime_select :meeting, :start, :class => 'form-control', :start_hour=> 8, :end_hour => 18, :minute_step => 30,
-                        :default => {:start_year => Date.current.year, :start_day => Date.current.next_day, :hour => '10', :minute => '30'} %>
-  </div>
-  <div id="new-meeting-form" class="mb-3">
-    <%= label :meeting, :info, 'Meeting Information', :class => 'form-label' %>
-    <%= text_area :meeting, :info, :class => "form-control", :rows => "3" %>
-  </div>
-  <br/>
-  <%= submit_tag 'Edit Meeting', :class => 'btn btn-dark btn' %>
-  <%= link_to 'Cancel', nurse_path(@nurse), :class => 'btn btn-dark btn' %>
-<% end %>
+</div>
+
 <script>
     $(document).ready(function(){
         $('input:checkbox').click(function() {
@@ -24,31 +46,3 @@
         })
     });
 </script>
-<h3>Student Information</h3>
-<ul>
-  <li> First Name: <%= @meeting.student.user.first_name %> </li>
-  <li> Last Name: <%= @meeting.student.user.last_name %></li>
-  <li> Birthdate: <%=@meeting.student.birthdate %> </li>
-  <li> Email: <%= @meeting.student.user.email %></li>
-  <li> Guardian Information:
-    <% @meeting.student.guardians.each do |guardian| %>
-      <ul name="guardian_details">
-        <li>Name: <%= guardian.first_name%> <%= guardian.last_name %><br/>
-          Email: <%= guardian.email%></li>
-      </ul>
-    <% end %>
-    </ul>
-<h3>Medication Assignment</h3>
-<% @meeting.student.medication_assignments.each do |med_assignment| %>
-  <ul>
-    <li> Medication Info:
-      <%= Medication.find(med_assignment.medication_id).name %>
-      (<%= Medication.find(med_assignment.medication_id).true_name %>), dosage:
-      <%= Medication.find(med_assignment.medication_id).dosage %>
-    </li>
-    <li> Medication Start Date: <%= med_assignment.start_date %></li>
-    <li> Medication End Date: <%= med_assignment.end_date %></li>
-  </ul>
-<% end %>
-
-<%= link_to 'Log Meeting', log_path(@meeting.nurse, @meeting), method: 'post'  %>

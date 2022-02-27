@@ -64,6 +64,7 @@ class StudentsController < ApplicationController
 
   def edit
     @student = Student.find params[:id]
+    @user = @student.user
     @guardians = @student.guardians.first
   end
 
@@ -72,7 +73,7 @@ class StudentsController < ApplicationController
     @student.update_attributes!(student_params.delete_if {|key, value| value.nil? || value.empty?})
     @student.user.update_attributes!(user_params.delete_if {|key, value| value.nil? || value.empty?})
     @student.guardians.find(params[:guardians][:id]).user.update_attributes!(guardian_params)
-    flash[:notice] = "Information of #{@student.user.first_name} #{@student.user.last_name} was successfully updated."
+    flash[:notice] = "Student details were successfully updated."
     redirect_to student_path(@student)
   end
 

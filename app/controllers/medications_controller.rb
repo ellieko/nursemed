@@ -22,14 +22,14 @@ class MedicationsController < ApplicationController
 
   def create
     @medication = Medication.create!(medication_params)
-    flash[:notice] = "Successfully added medication"
+    flash[:notice] = "Successfully added medication."
     redirect_to medications_path
   end
 
   def update
     @medication = Medication.find params[:id]
     @medication.update_attributes!(medication_params)
-    flash[:notice] = "Successfully updated medication"
+    flash[:notice] = "Successfully updated medication."
     redirect_to medication_path(@medication)
   end
 

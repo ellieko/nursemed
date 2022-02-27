@@ -10,7 +10,7 @@
           <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
           <div class="divider-custom-line"></div>
         </div>
-        <table class="table table-striped col-md-12" id="movies">
+        <table class="table table-striped col-md-12">
           <thead>
           <tr>
             <th>Medication Name</th>
@@ -31,7 +31,7 @@
           </tbody>
         </table>
         <% if  @current_user.administrator%>
-            <%= link_to 'Add medication', new_medication_path, :class => 'btn btn-primary' %>
+            <%= link_to 'Add Medication', new_medication_path, :class => 'btn btn-primary' %>
         <% end %>
 
 

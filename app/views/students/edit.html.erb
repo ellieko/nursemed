@@ -1,46 +1,59 @@
-<section class="page-section portfolio" id="portfolio">
-  <div class="container">
-    <!-- Portfolio Section Heading-->
+<div class="modal-dialog modal-xl">
+  <div class="modal-content">
+    <div class="modal-header border-0"></div>
+    <div class="modal-body text-center pb-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Edit Student Information</h2>
+            <div class="divider-custom">
+              <div class="divider-custom-line"></div>
+              <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+              <div class="divider-custom-line"></div>
+            </div>
+            <ul class="list-group text-start" id="details">
 
-    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Edit Student Information</h2>
-    <div class="divider-custom">
-      <div class="divider-custom-line"></div>
-      <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-      <div class="divider-custom-line"></div>
+                <%= form_tag student_path(@student), :method => :put do %>
+                  <div class="mb-3">
+                    <%= label :user, :first_name, 'First Name', :class => 'col-form-label' %>
+                    <%= text_field :user, :first_name, :class => 'form-control' %>
+                  </div>
+                  <div class="mb-3">
+                    <%= label :user, :last_name, 'Last Name', :class => 'col-form-label' %>
+                    <%= text_field :user, :last_name, :class => 'form-control' %>
+                  </div>
+                  <div class="mb-3">
+                    <%= label :user, :email, 'Email', :class => 'col-form-label'  %>
+                    <%= text_field :user, :email, :class => 'form-control' %>
+                  </div>
+                  <div class="mb-3">
+                    <%= label :student, :birthdate, 'Birthdate', :class => 'col-form-label'  %>
+                    <%= date_select :student, :birthdate, {}, :class => "form-select mb-3" %>
+                  </div>
+                  <br>
+                  <h4 class="page-section-heading text-center text-uppercase text-secondary mb-0">Guardian Information:</h4>
+                  <%= hidden_field :guardians, :id%>
+                  <%= label :guardians, :first_name, 'First Name', :class => 'col-form-label' %>
+                  <%= text_field :guardians, :first_name, :class => 'form-control' %>
+
+                  <%= label :guardians, :last_name, 'Last Name', :class => 'col-form-label'%>
+                  <%= text_field :guardians, :last_name, :class => 'form-control' %>
+
+                  <%= label :guardians, :email, 'Email', :class => 'col-form-label'%>
+                  <%= text_field :guardians, :email, :class => 'form-control' %>
+
+                  <br/>
+                  <div class="row justify-content-center">
+                    <div style="float: left; width: auto;"><%= submit_tag 'Save', :class => 'btn btn-primary' %></div>
+                    <div style="float: left; width: auto;"><%= link_to 'Cancel', student_path(@student), :class => 'btn btn-secondary' %></div>
+                  </div>
+                <% end %>
+            </ul>
+            <br>
+          </div>
+
+        </div>
+      </div>
     </div>
-
-
-        <%= form_for @student, :method => :put do %>
-          <%= label :user, :first_name, 'First Name', :class => 'col-form-label' %>
-          <%= text_field :user, :first_name, :class => 'form-control' %>
-
-          <%= label :user, :last_name, 'Last Name', :class => 'col-form-label' %>
-          <%= text_field :user, :last_name, :class => 'form-control' %>
-
-          <%= label :user, :email, 'Email', :class => 'col-form-label'  %>
-          <%= text_field :user, :email, :class => 'form-control' %>
-
-          <%= label :student, :birthdate, 'Birthdate', :class => 'col-form-label'  %>
-          <%= date_select :student, :birthdate, {}, :class => "form-select form-select-lg mb-3" %>
-
-          <%= label :student, :birthdate, 'Guardian:', :class => 'col-form-label' %>
-          <ul>
-            <%= hidden_field :guardians, :id%>
-            <%= label :guardians, :first_name, 'First Name', :class => 'col-form-label' %>
-            <%= text_field :guardians, :first_name, :class => 'form-control' %>
-
-            <%= label :guardians, :last_name, 'Last Name', :class => 'col-form-label'%>
-            <%= text_field :guardians, :last_name, :class => 'form-control' %>
-
-            <%= label :guardians, :email, 'Email', :class => 'col-form-label'%>
-            <%= text_field :guardians, :email, :class => 'form-control' %>
-          </ul>
-
-          <br/>
-
-          <%= submit_tag 'Update Student Info', :class => 'btn btn-primary' %>
-          <%= link_to 'Cancel', students_path, :class => 'btn btn-secondary' %>
-        <% end %>
-
   </div>
-</section>
+</div>

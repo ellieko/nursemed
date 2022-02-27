@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
   end
 
   def access_denied
-    flash[:warning] = "[Unauthorized action] Redirected to the main page."
+    flash[:warning] = "Unauthorized action, redirected to the main page."
   end
 
 end
